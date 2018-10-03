@@ -1,4 +1,4 @@
-# Exercise 3.3.1
+# Exercise 3.1
 
 ```{r HW3_2, include=FALSE}
 # automatically create a bib database for R packages

@@ -1,71 +1,104 @@
-# Exercise 3.3.2
+# Exercise 3.2
 
-```{r HW4_1, warning=FALSE}
-##' define the loglikelihood function
-loglik.my0 <- function(theta, sample) {
-  n <- length(sample)
-  if (sum(sample >=0 & sample <= 2*pi) < n) {
-    print("sample is out of range")
-  } else if(theta < -pi | theta > pi) {
-    print("theta is out of range")
-  } else {
-   l <- sum(log(1-cos(sample-theta))) - n * log(2*pi)
-   return(l) 
-  }
-}
-loglik.my <- function(theta, sample) {
-  l <- sapply(theta, FUN = loglik.my0, sample = sample)
-  l
-}
+## Find the the log-likelihood function
 
-s <- c(3.91, 4.85, 2.28, 4.06, 3.70, 4.04, 5.46, 3.53, 2.28, 1.96,
+The log-likelihood function of this distribution is
+
+$$ \ell(\mathbf{x}, \theta) = \sum_{i=1}^n \log\{1-\cos(x_i-\theta)\} - n\log2\pi$$
+
+
+```{r}
+x <- c(3.91, 4.85, 2.28, 4.06, 3.70, 4.04, 5.46, 3.53, 2.28, 1.96,
        2.53, 3.88, 2.22, 3.47, 4.82, 2.46, 2.99, 2.54, 0.52)
-curve(loglik.my(x, sample = s), -pi, pi)
+
+loglikelihood <- function(theta){
+  n <- length(x)
+  s <- sum(log(1 - cos(x - theta))) + n * log(2 * pi)
+  return(s)
+}
+loglikelihood <- Vectorize(loglikelihood)
+curve(loglikelihood, -pi, pi, xlab = expression(theta), ylab = "log-likelihood")
 ```
 
+## Find the method-of-moments estimator
+
+The expectation of $\mathbf{x}|\theta$ is
 \begin{align*}
-E(X|\theta) &= \int_0^{2\pi}x\frac{1-\cos(x-\theta)}{2\pi}dx\\
-            &= \frac{1}{2\pi} \int_0^{2\pi}xdx - \frac{1}{2\pi}\int_0^{2\pi}
-            x\cos(x-\theta)dx\\
-            &= \left.\frac{1}{2\pi} \times \frac{1}{2}\right\vert_0^{2\pi} - 
-            \frac{1}{2\pi}\int_0^{2\pi}xd\sin(x-\theta)\\
-            &= \pi - \frac{1}{2\pi} \left[\left.x\sin(x-\theta)\right\vert_0^
-            {2\pi}-\int_0^{2\pi}\sin(x-\theta)dx\right]\\
-            &= \pi - \frac{1}{2\pi} \left[2\pi\sin(2\pi-\theta)+\cos(x-\theta)
-            \left.\right\vert_0^{2\pi}\right]\\
-            &= \pi - \frac{1}{2\pi} \left[-2\pi\sin(\theta)\right]\\
-            &= \pi + \sin(\theta)\\
-            &= \bar{X}_n\\
+\mathbb E (x | \theta) &= \int_{0}^{2\pi} x \frac{1-\cos(x-\theta)}{2\pi} dx \\
+&= \frac{1}{2\pi} \int_{0}^{2\pi} x - x\cos(x-\theta) dx \\
+&= \pi + \sin(\theta) \\
+&= \bar{X_n}
 \end{align*}
-$$\Rightarrow\tilde{\theta}_n = \arcsin(\bar{X}_n - \pi)$$
-```{r HW4_2, warning=FALSE}
-library(pracma)
-theta_0 <- asin(mean(s) - pi)
-##' define derivitive of log-likelihood function
-dev.loglik0 <- function(theta, sample) {
-  dev.l <- sum(sin(theta-sample)/(1-cos(theta-sample)))
-  dev.l
-}
-dev.loglik <- function(theta, sample) {
-  dev.l <- sapply(theta, FUN = dev.loglik0, sample = sample)
-}
 
-x1 <- newtonRaphson(fun = dev.loglik, x0 = theta_0, sample = s)$root
-x2 <- newtonRaphson(fun = dev.loglik, x0 = -2.7, sample = s)$root
-x3 <- newtonRaphson(fun = dev.loglik, x0 = 2.7, sample = s)$root
-x1
-x2
-x3
+Thus, 
+
+```{r}
+theta_tilde <- asin(mean(x) - pi)
+theta_tilde
 ```
 
-Newton-Raphson method gives 0.0031 as MLE when MOM 0.095 is initial value, 
--2.669 as MLE when -2.7 is initial value, 2.848 as MLE when 2.7 is initial value.
+## Find the MLE 
 
-```{r HW4_3, warning=FALSE}
-n <- 200
-init <- seq(-pi, pi, length.out = n)
-root.newton <- rep(0, n)
-for (i in 1:n) root.newton[i] <- newtonRaphson(fun = dev.loglik, x0 = init[i], 
-                                               sample = s)$root
-plot(init, root.newton, type = "l", xlab = "initial value")
+Since
+
+$$\frac{\partial\ell(\mathbf{x}; \theta)}{\partial\theta} = \sum_{i=1}^n \frac{-\sin(x_i - \theta)}{1-\cos(x_i-\theta)}$$
+
+$$\frac{\partial^2\ell(\mathbf{x}; \theta)}{\partial \theta^2} = \sum_{i=1}^n \frac{\cos(x_i-\theta) - \cos^2(x_i-\theta)-\sin^2(x_i-\theta)}{(1-\cos(x_i-\theta))^2}$$
+
+The Newton-Raphson method is
+
+$$\hat\theta^{(t+1)} = \hat\theta^{(t)} - \left\{\frac{\partial^2\ell(\mathbf{x}; \hat\theta^{(t)})}{\partial \theta^2}\right\}^{-1}\frac{\partial\ell(\mathbf{x}; \hat\theta^{(t)})}{\partial\theta}$$
+
+```{r}
+lfd <- function(theta){
+  sum(-sin(x-theta)/(1-cos(x-theta)))
+}
+
+lsd <- function(theta){
+  sum((cos(x-theta) - (cos(x-theta))^2 - (sin(x-theta))^2)/(1-cos(x-theta))^2)
+}
+
+Newton <- function(init){
+  theta0 <- init
+  i <- 0
+  diff <- 1
+  msg <- "converge"
+  while(abs(diff) > 0.0000001){
+    lfd <- lfd(theta0)
+    lsd <- lsd(theta0)
+    diff <- (lfd/lsd)
+    theta1 <- theta0 - diff
+    theta0 <- theta1
+    i <- i+1
+    #cat(i)
+    if(i >= 150){
+      msg <- "Not converge"
+      theta0 <- Inf
+      break
+    }
+  }
+  return(list(theta = theta0, itr = i, msg = msg))
+}
+Newton(theta_tilde)
+```
+
+## $\theta_0 = 2.7$ or $\theta_0 = -2.7$
+
+```{r}
+Newton(-2.7)
+Newton(2.7)
+```
+
+The $\hat\theta$ we got is different.
+
+## Repeat the above using 200 equally spaced starting values
+
+```{r}
+init <- seq(-pi, pi, length.out=200)
+result <- NULL
+for(initi in init){
+  result <- rbind(result, c(initi, Newton(initi)$theta))
+}
+colnames(result) <- c("Initial_value", "theta_hat")
+split(result, result[,2])
 ```

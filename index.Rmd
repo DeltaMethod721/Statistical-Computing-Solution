@@ -1,6 +1,5 @@
 --- 
 title: "STAT 5361 Statistical Computing Solution"
-author: "Disheng Mao"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -21,5 +20,10 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
 ```
+```{r echo = FALSE}
+source("utils_template.R")
+```
+
+
 
 

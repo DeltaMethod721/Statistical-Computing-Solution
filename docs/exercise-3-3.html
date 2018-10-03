@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>STAT 5361 Statistical Computing Solution</title>
+  <meta name="description" content="This is solution for STAT 5361 UCONN, Fall 2018">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="STAT 5361 Statistical Computing Solution" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is solution for STAT 5361 UCONN, Fall 2018" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="STAT 5361 Statistical Computing Solution" />
+  
+  <meta name="twitter:description" content="This is solution for STAT 5361 UCONN, Fall 2018" />
+  
+
+
+
+<meta name="date" content="2018-10-03">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="exercise-3-2.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistical Computing Solution</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="exercise-3-1.html"><a href="exercise-3-1.html"><i class="fa fa-check"></i><b>1</b> Exercise 3.1</a><ul>
+<li class="chapter" data-level="1.1" data-path="exercise-3-1.html"><a href="exercise-3-1.html#get-fisher-information"><i class="fa fa-check"></i><b>1.1</b> Get Fisher Information</a></li>
+<li class="chapter" data-level="1.2" data-path="exercise-3-1.html"><a href="exercise-3-1.html#implement-loglikelihood-with-a-random-sample-and-plot-against-theta"><i class="fa fa-check"></i><b>1.2</b> Implement loglikelihood with a random sample and plot against <span class="math inline">\(\theta\)</span></a></li>
+<li class="chapter" data-level="1.3" data-path="exercise-3-1.html"><a href="exercise-3-1.html#newton-raphson-method"><i class="fa fa-check"></i><b>1.3</b> Newton-Raphson method</a></li>
+<li class="chapter" data-level="1.4" data-path="exercise-3-1.html"><a href="exercise-3-1.html#fixed-point-method"><i class="fa fa-check"></i><b>1.4</b> Fixed point method</a></li>
+<li class="chapter" data-level="1.5" data-path="exercise-3-1.html"><a href="exercise-3-1.html#fisher-scoring-and-newton-raphson"><i class="fa fa-check"></i><b>1.5</b> Fisher scoring and Newton-Raphson</a></li>
+<li class="chapter" data-level="1.6" data-path="exercise-3-1.html"><a href="exercise-3-1.html#comparing-the-different-methods"><i class="fa fa-check"></i><b>1.6</b> comparing the different methods</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="exercise-3-2.html"><a href="exercise-3-2.html"><i class="fa fa-check"></i><b>2</b> Exercise 3.2</a><ul>
+<li class="chapter" data-level="2.1" data-path="exercise-3-2.html"><a href="exercise-3-2.html#find-the-the-log-likelihood-function"><i class="fa fa-check"></i><b>2.1</b> Find the the log-likelihood function</a></li>
+<li class="chapter" data-level="2.2" data-path="exercise-3-2.html"><a href="exercise-3-2.html#find-the-method-of-moments-estimator"><i class="fa fa-check"></i><b>2.2</b> Find the method-of-moments estimator</a></li>
+<li class="chapter" data-level="2.3" data-path="exercise-3-2.html"><a href="exercise-3-2.html#find-the-mle"><i class="fa fa-check"></i><b>2.3</b> Find the MLE</a></li>
+<li class="chapter" data-level="2.4" data-path="exercise-3-2.html"><a href="exercise-3-2.html#theta_0-2.7-or-theta_0--2.7"><i class="fa fa-check"></i><b>2.4</b> <span class="math inline">\(\theta_0 = 2.7\)</span> or <span class="math inline">\(\theta_0 = -2.7\)</span></a></li>
+<li class="chapter" data-level="2.5" data-path="exercise-3-2.html"><a href="exercise-3-2.html#repeat-the-above-using-200-equally-spaced-starting-values"><i class="fa fa-check"></i><b>2.5</b> Repeat the above using 200 equally spaced starting values</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exercise-3-3.html"><a href="exercise-3-3.html"><i class="fa fa-check"></i><b>3</b> Exercise 3.3</a><ul>
+<li class="chapter" data-level="3.1" data-path="exercise-3-3.html"><a href="exercise-3-3.html#fit-the-population-growth-model-to-the-beetles-data-using-the-gauss-newton-approach"><i class="fa fa-check"></i><b>3.1</b> Fit the population growth model to the beetles data using the Gauss-Newton approach</a></li>
+<li class="chapter" data-level="3.2" data-path="exercise-3-3.html"><a href="exercise-3-3.html#log-normal-assumption"><i class="fa fa-check"></i><b>3.2</b> Log normal assumption</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 5361 Statistical Computing Solution</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exercise-3.3" class="section level1">
+<h1><span class="header-section-number">Problem 3</span> Exercise 3.3</h1>
+<div id="fit-the-population-growth-model-to-the-beetles-data-using-the-gauss-newton-approach" class="section level2">
+<h2><span class="header-section-number">3.1</span> Fit the population growth model to the beetles data using the Gauss-Newton approach</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(graphics)
+<span class="kw">library</span>(Matrix)</code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;Matrix&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:pracma&#39;:
+## 
+##     expm, lu, tril, triu</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beetles &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+    <span class="dt">days    =</span> <span class="kw">c</span>(<span class="dv">0</span>,  <span class="dv">8</span>,  <span class="dv">28</span>,  <span class="dv">41</span>,  <span class="dv">63</span>,  <span class="dv">69</span>,   <span class="dv">97</span>, <span class="dv">117</span>,  <span class="dv">135</span>,  <span class="dv">154</span>),
+    <span class="dt">beetles =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">47</span>, <span class="dv">192</span>, <span class="dv">256</span>, <span class="dv">768</span>, <span class="dv">896</span>, <span class="dv">1120</span>, <span class="dv">896</span>, <span class="dv">1184</span>, <span class="dv">1024</span>))
+
+##&#39; define the sum of squared errors function
+sqerr &lt;-<span class="st"> </span><span class="cf">function</span>(k, r) {
+  s &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow =</span> <span class="kw">length</span>(k), <span class="dt">ncol =</span> <span class="kw">length</span>(r))
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(k)) {
+    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(r)) {
+      s[i, j] &lt;-<span class="st"> </span><span class="kw">sum</span>((beetles<span class="op">$</span>beetles <span class="op">-</span><span class="st"> </span>k[i] <span class="op">*</span><span class="st"> </span>beetles<span class="op">$</span>beetles[<span class="dv">1</span>] <span class="op">/</span><span class="st"> </span>
+<span class="st">              </span>(beetles<span class="op">$</span>beetles[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>(k[i] <span class="op">-</span><span class="st"> </span>beetles<span class="op">$</span>beetles[<span class="dv">1</span>]) <span class="op">*</span><span class="st"> </span>
+<span class="st">                 </span><span class="kw">exp</span>(<span class="op">-</span>r[j]<span class="op">*</span>beetles<span class="op">$</span>days)))<span class="op">^</span><span class="dv">2</span>)
+    }
+  }
+  s
+}
+
+##&#39; define z function
+z.vec &lt;-<span class="st"> </span><span class="cf">function</span>(k, r) {
+  n &lt;-<span class="st"> </span><span class="kw">length</span>(beetles<span class="op">$</span>days)
+  z &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, n)
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {
+   z[i] &lt;-<span class="st"> </span>beetles<span class="op">$</span>beetles[i] <span class="op">-</span><span class="st"> </span>k<span class="op">*</span>beetles<span class="op">$</span>beetles[<span class="dv">1</span>] <span class="op">/</span><span class="st"> </span>
+<span class="st">     </span>(beetles<span class="op">$</span>beetles[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>(k <span class="op">-</span><span class="st"> </span>beetles<span class="op">$</span>beetles[<span class="dv">1</span>])<span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>r<span class="op">*</span>beetles<span class="op">$</span>days[i])) 
+  }
+  <span class="kw">return</span>(z)
+}
+
+##&#39; define A matrix
+A.mat &lt;-<span class="st"> </span><span class="cf">function</span>(k, r) {
+  n &lt;-<span class="st"> </span><span class="kw">length</span>(beetles<span class="op">$</span>days)
+  A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow =</span> n, <span class="dt">ncol =</span> <span class="dv">2</span>)
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {
+    A[i, <span class="dv">1</span>] &lt;-<span class="st"> </span>beetles<span class="op">$</span>beetles[<span class="dv">1</span>]<span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">-</span><span class="kw">exp</span>(<span class="op">-</span>r<span class="op">*</span>beetles<span class="op">$</span>days[i])) <span class="op">/</span><span class="st"> </span>
+<span class="st">      </span>(beetles<span class="op">$</span>beetles[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>(k<span class="op">-</span>beetles<span class="op">$</span>beetles[<span class="dv">1</span>])<span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>r<span class="op">*</span>beetles<span class="op">$</span>days[i]))<span class="op">^</span><span class="dv">2</span>
+    
+    A[i, <span class="dv">2</span>] &lt;-<span class="st"> </span>beetles<span class="op">$</span>beetles[<span class="dv">1</span>]<span class="op">*</span>k<span class="op">*</span>beetles<span class="op">$</span>days[i]<span class="op">*</span>(k<span class="op">-</span>beetles<span class="op">$</span>beetles[<span class="dv">1</span>]) <span class="op">*</span><span class="st"> </span>
+<span class="st">      </span><span class="kw">exp</span>(<span class="op">-</span>r<span class="op">*</span>beetles<span class="op">$</span>days[i]) <span class="op">/</span><span class="st"> </span>(beetles<span class="op">$</span>beetles[<span class="dv">1</span>]<span class="op">+</span>(k<span class="op">-</span>beetles<span class="op">$</span>beetles[<span class="dv">1</span>]) <span class="op">*</span><span class="st"> </span>
+<span class="st">                                   </span><span class="kw">exp</span>(<span class="op">-</span>r<span class="op">*</span>beetles<span class="op">$</span>days[i]))<span class="op">^</span><span class="dv">2</span>
+  }
+  <span class="kw">return</span>(A)
+}
+
+gaussNewton.beetles &lt;-<span class="st"> </span><span class="cf">function</span>(para0, z.vec, A.mat, <span class="dt">maxiter =</span> <span class="dv">100</span>, 
+                                <span class="dt">tol =</span> .Machine<span class="op">$</span>double.eps<span class="op">^</span><span class="fl">0.5</span>) {
+  para &lt;-<span class="st"> </span>para0
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>maxiter) {
+    Amat &lt;-<span class="st"> </span><span class="kw">A.mat</span>(para[<span class="dv">1</span>], para[<span class="dv">2</span>])
+    zvec &lt;-<span class="st"> </span><span class="kw">z.vec</span>(para[<span class="dv">1</span>], para[<span class="dv">2</span>])
+    para.new &lt;-<span class="st"> </span>para <span class="op">+</span><span class="st"> </span><span class="kw">solve</span>(<span class="kw">t</span>(Amat) <span class="op">%*%</span><span class="st"> </span>Amat <span class="op">+</span><span class="st"> </span><span class="fl">0.0001</span><span class="op">*</span><span class="kw">diag</span>(<span class="dt">nrow =</span> <span class="dv">2</span>)) <span class="op">%*%</span><span class="st"> </span>
+<span class="st">      </span><span class="kw">t</span>(Amat) <span class="op">%*%</span><span class="st"> </span>zvec
+    <span class="cf">if</span> (<span class="kw">sum</span>(<span class="kw">abs</span>(para.new <span class="op">-</span><span class="st"> </span>para)) <span class="op">&lt;</span><span class="st"> </span>tol) <span class="cf">break</span>
+    para &lt;-<span class="st"> </span>para.new
+  }
+  <span class="cf">if</span> (i <span class="op">==</span><span class="st"> </span>maxiter) <span class="kw">warning</span>(<span class="st">&quot;maximum iteration has reached&quot;</span>)
+  <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">root =</span> para, <span class="dt">niter =</span> i))
+}
+
+fit &lt;-<span class="st"> </span><span class="kw">gaussNewton.beetles</span>(<span class="dt">para0 =</span> <span class="kw">c</span>(<span class="dv">1200</span>, <span class="fl">0.1</span>), <span class="dt">z.vec =</span> z.vec, <span class="dt">A.mat =</span> A.mat)
+fit<span class="op">$</span>root</code></pre></div>
+<pre><code>##              [,1]
+## [1,] 1049.4072443
+## [2,]    0.1182684</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">k &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">100</span>, <span class="dv">1500</span>, <span class="dt">by =</span> <span class="dv">10</span>)
+r &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="dt">by =</span> <span class="fl">0.001</span>)
+z &lt;-<span class="st"> </span><span class="kw">sqerr</span>(k, r)
+<span class="kw">contour</span>(k, r, z, <span class="dt">xlab =</span> <span class="st">&quot;k&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;r&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;contour plot for squared error&quot;</span>)</code></pre></div>
+<p><img src="Statistical-Computing-Solution_files/figure-html/HW4_4-1.png" width="672" /></p>
+<p>Estimation using Gauss-Newton method is <span class="math inline">\(\hat{k} = 1049\)</span>, <span class="math inline">\(\hat{r} = 0.12\)</span>.</p>
+</div>
+<div id="log-normal-assumption" class="section level2">
+<h2><span class="header-section-number">3.2</span> Log normal assumption</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##&#39; define log-likelihood function
+loglikeli &lt;-<span class="st"> </span><span class="cf">function</span>(para) {
+  k &lt;-<span class="st"> </span>para[<span class="dv">1</span>]
+  r &lt;-<span class="st"> </span>para[<span class="dv">2</span>]
+  sigma2 &lt;-<span class="st"> </span>para[<span class="dv">3</span>]
+  l &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">-</span><span class="kw">log</span>(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span>sigma2)<span class="op">/</span><span class="dv">2</span> <span class="op">-</span><span class="st"> </span>(<span class="kw">log</span>(beetles<span class="op">$</span>beetles) <span class="op">-</span><span class="st"> </span><span class="kw">log</span>(k) <span class="op">-</span><span class="st"> </span>
+<span class="st">                                    </span><span class="kw">log</span>(beetles<span class="op">$</span>beetles[<span class="dv">1</span>]) <span class="op">+</span><span class="st"> </span>
+<span class="st">                                    </span><span class="kw">log</span>(beetles<span class="op">$</span>beetles[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>
+<span class="st">                                          </span>(k<span class="op">-</span>beetles<span class="op">$</span>beetles[<span class="dv">1</span>]) <span class="op">*</span><span class="st"> </span>
+<span class="st">                                          </span><span class="kw">exp</span>(<span class="op">-</span>r<span class="op">*</span>beetles<span class="op">$</span>days))<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="dv">2</span><span class="op">/</span>sigma2)
+  <span class="kw">return</span>(l)
+}
+
+##&#39; define gradiant of loglikelihood function
+grad.my &lt;-<span class="st"> </span><span class="cf">function</span>(para) {
+  k &lt;-<span class="st"> </span>para[<span class="dv">1</span>]
+  r &lt;-<span class="st"> </span>para[<span class="dv">2</span>]
+  sigma2 &lt;-<span class="st"> </span>para[<span class="dv">3</span>]
+  g &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">3</span>)
+  g[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>(<span class="kw">log</span>(beetles<span class="op">$</span>beetles)<span class="op">-</span><span class="kw">log</span>(k)<span class="op">-</span><span class="kw">log</span>(beetles<span class="op">$</span>beetles[<span class="dv">1</span>])<span class="op">+</span>
+<span class="st">                    </span><span class="kw">log</span>(beetles<span class="op">$</span>beetles[<span class="dv">1</span>]<span class="op">+</span>(k<span class="op">-</span>beetles<span class="op">$</span>beetles[<span class="dv">1</span>])<span class="op">*</span>
+<span class="st">                          </span><span class="kw">exp</span>(<span class="op">-</span>r<span class="op">*</span>beetles<span class="op">$</span>days)))<span class="op">*</span>
+<span class="st">                </span>(<span class="op">-</span><span class="dv">1</span><span class="op">/</span>k<span class="op">+</span><span class="kw">exp</span>(<span class="op">-</span>r<span class="op">*</span>beetles<span class="op">$</span>days)<span class="op">/</span>
+<span class="st">                   </span>(beetles<span class="op">$</span>beetles[<span class="dv">1</span>]<span class="op">+</span>
+<span class="st">                      </span>(k<span class="op">-</span>beetles<span class="op">$</span>beetles[<span class="dv">1</span>])<span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>r<span class="op">*</span>beetles<span class="op">$</span>days)))<span class="op">/</span><span class="dv">2</span><span class="op">/</span>sigma2)
+  g[<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="dv">2</span><span class="op">*</span>(<span class="kw">log</span>(beetles<span class="op">$</span>beetles)<span class="op">-</span><span class="kw">log</span>(k)<span class="op">-</span><span class="kw">log</span>(beetles<span class="op">$</span>beetles[<span class="dv">1</span>])<span class="op">+</span>
+<span class="st">                   </span><span class="kw">log</span>(beetles<span class="op">$</span>beetles[<span class="dv">1</span>]<span class="op">+</span>(k<span class="op">-</span>beetles<span class="op">$</span>beetles[<span class="dv">1</span>])<span class="op">*</span>
+<span class="st">                         </span><span class="kw">exp</span>(<span class="op">-</span>r<span class="op">*</span>beetles<span class="op">$</span>days)))<span class="op">*</span>
+<span class="st">                </span>beetles<span class="op">$</span>days<span class="op">*</span>(k<span class="op">-</span>beetles<span class="op">$</span>beetles[<span class="dv">1</span>])<span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>r<span class="op">*</span>beetles<span class="op">$</span>days)<span class="op">/</span>
+<span class="st">                </span>(beetles<span class="op">$</span>beetles[<span class="dv">1</span>]<span class="op">+</span>(k<span class="op">-</span>beetles<span class="op">$</span>beetles[<span class="dv">1</span>])<span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>r<span class="op">*</span>beetles<span class="op">$</span>days))<span class="op">/</span>
+<span class="st">                </span><span class="dv">2</span><span class="op">/</span>sigma2)
+  g[<span class="dv">3</span>] &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span><span class="op">/</span>sigma2<span class="op">+</span>(<span class="kw">log</span>(beetles<span class="op">$</span>beetles)<span class="op">-</span><span class="kw">log</span>(k)<span class="op">-</span><span class="kw">log</span>(beetles<span class="op">$</span>beetles[<span class="dv">1</span>])<span class="op">+</span>
+<span class="st">                             </span><span class="kw">log</span>(beetles<span class="op">$</span>beetles[<span class="dv">1</span>]<span class="op">+</span>(k<span class="op">-</span>beetles<span class="op">$</span>beetles[<span class="dv">1</span>])<span class="op">*</span>
+<span class="st">                                   </span><span class="kw">exp</span>(<span class="op">-</span>r<span class="op">*</span>beetles<span class="op">$</span>days)))<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">2</span><span class="op">/</span>sigma2<span class="op">^</span><span class="dv">2</span>)
+  <span class="kw">return</span>(g)
+}
+
+fit &lt;-<span class="st"> </span><span class="kw">constrOptim</span>(<span class="dt">theta =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="fl">0.1</span>, <span class="dv">1</span>), <span class="dt">f =</span> loglikeli, <span class="dt">grad =</span> grad.my, 
+                   <span class="dt">ui =</span> <span class="kw">diag</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="dt">ci =</span> <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">3</span>), 
+                   <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">fnscale =</span> <span class="op">-</span><span class="dv">1</span>), <span class="dt">hessian =</span> <span class="ot">TRUE</span>)
+fit<span class="op">$</span>par</code></pre></div>
+<pre><code>## [1] 103.983292  12.124656   2.913935</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit<span class="op">$</span>convergence</code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Diag</span>(<span class="op">-</span><span class="kw">solve</span>(fit<span class="op">$</span>hessian))</code></pre></div>
+<pre><code>## [1] 2.707176e+03 1.212466e+05 2.841633e+00</code></pre>
+<p>Using BFGS methods, set constrain to make <span class="math inline">\(k\)</span>, <span class="math inline">\(r\)</span>, <span class="math inline">\(sigma^2\)</span> nonnegative, we get the MLE estimates <span class="math inline">\(\hat{k} = 103.98\)</span>, <span class="math inline">\(\hat{r} = 12.12\)</span>, <span class="math inline">\(\hat{\sigma}^2 = 2.91\)</span>. Using inverse of negative hessian, we have these estimates’ variance to be <span class="math inline">\(2.7\times 10^3\)</span>, <span class="math inline">\(1.2\times 10^5\)</span>, <span class="math inline">\(2.8\)</span> respectively.</p>
+<p>But there’s problem that results will change dramatically with initial values. I just tried several different initial values, get the estimates and compare their corresponding loglikelihood. I just choose the one with maximum loglikelihood.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="exercise-3-2.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["Statistical-Computing-Solution.pdf", "Statistical-Computing-Solution.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
