@@ -24,7 +24,7 @@
 
 
 
-<meta name="date" content="2018-10-03">
+<meta name="date" content="2018-10-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -121,6 +121,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.1" data-path="exercise-3-3.html"><a href="exercise-3-3.html#fit-the-population-growth-model-to-the-beetles-data-using-the-gauss-newton-approach"><i class="fa fa-check"></i><b>3.1</b> Fit the population growth model to the beetles data using the Gauss-Newton approach</a></li>
 <li class="chapter" data-level="3.2" data-path="exercise-3-3.html"><a href="exercise-3-3.html#log-normal-assumption"><i class="fa fa-check"></i><b>3.2</b> Log normal assumption</a></li>
 </ul></li>
+<li class="chapter" data-level="4" data-path="exercise-4-8-1.html"><a href="exercise-4-8-1.html"><i class="fa fa-check"></i><b>4</b> Exercise 4.8.1</a><ul>
+<li class="chapter" data-level="4.1" data-path="exercise-4-8-1.html"><a href="exercise-4-8-1.html#em-step-derivations"><i class="fa fa-check"></i><b>4.1</b> E/M-Step Derivations</a></li>
+<li class="chapter" data-level="4.2" data-path="exercise-4-8-1.html"><a href="exercise-4-8-1.html#a-function-to-implement-em-algorithm"><i class="fa fa-check"></i><b>4.2</b> A Function to Implement EM Algorithm</a></li>
+<li class="chapter" data-level="4.3" data-path="exercise-4-8-1.html"><a href="exercise-4-8-1.html#data-generation-and-parameters-estimation"><i class="fa fa-check"></i><b>4.3</b> Data Generation and Parameters Estimation</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -157,7 +162,7 @@ loglikelihood &lt;-<span class="st"> </span><span class="cf">function</span>(the
 }
 loglikelihood &lt;-<span class="st"> </span><span class="kw">Vectorize</span>(loglikelihood)
 <span class="kw">curve</span>(loglikelihood, <span class="op">-</span>pi, pi, <span class="dt">xlab =</span> <span class="kw">expression</span>(theta), <span class="dt">ylab =</span> <span class="st">&quot;log-likelihood&quot;</span>)</code></pre></div>
-<p><img src="Statistical-Computing-Solution_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="Statistical-Computing-Solution_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 <div id="find-the-method-of-moments-estimator" class="section level2">
 <h2><span class="header-section-number">2.2</span> Find the method-of-moments estimator</h2>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>STAT 5361 Statistical Computing Solution</title>
+  <meta name="description" content="This is solution for STAT 5361 UCONN, Fall 2018">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="STAT 5361 Statistical Computing Solution" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is solution for STAT 5361 UCONN, Fall 2018" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="STAT 5361 Statistical Computing Solution" />
+  
+  <meta name="twitter:description" content="This is solution for STAT 5361 UCONN, Fall 2018" />
+  
+
+
+
+<meta name="date" content="2018-10-16">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="exercise-3-3.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistical Computing Solution</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="exercise-3-1.html"><a href="exercise-3-1.html"><i class="fa fa-check"></i><b>1</b> Exercise 3.1</a><ul>
+<li class="chapter" data-level="1.1" data-path="exercise-3-1.html"><a href="exercise-3-1.html#get-fisher-information"><i class="fa fa-check"></i><b>1.1</b> Get Fisher Information</a></li>
+<li class="chapter" data-level="1.2" data-path="exercise-3-1.html"><a href="exercise-3-1.html#implement-loglikelihood-with-a-random-sample-and-plot-against-theta"><i class="fa fa-check"></i><b>1.2</b> Implement loglikelihood with a random sample and plot against <span class="math inline">\(\theta\)</span></a></li>
+<li class="chapter" data-level="1.3" data-path="exercise-3-1.html"><a href="exercise-3-1.html#newton-raphson-method"><i class="fa fa-check"></i><b>1.3</b> Newton-Raphson method</a></li>
+<li class="chapter" data-level="1.4" data-path="exercise-3-1.html"><a href="exercise-3-1.html#fixed-point-method"><i class="fa fa-check"></i><b>1.4</b> Fixed point method</a></li>
+<li class="chapter" data-level="1.5" data-path="exercise-3-1.html"><a href="exercise-3-1.html#fisher-scoring-and-newton-raphson"><i class="fa fa-check"></i><b>1.5</b> Fisher scoring and Newton-Raphson</a></li>
+<li class="chapter" data-level="1.6" data-path="exercise-3-1.html"><a href="exercise-3-1.html#comparing-the-different-methods"><i class="fa fa-check"></i><b>1.6</b> comparing the different methods</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="exercise-3-2.html"><a href="exercise-3-2.html"><i class="fa fa-check"></i><b>2</b> Exercise 3.2</a><ul>
+<li class="chapter" data-level="2.1" data-path="exercise-3-2.html"><a href="exercise-3-2.html#find-the-the-log-likelihood-function"><i class="fa fa-check"></i><b>2.1</b> Find the the log-likelihood function</a></li>
+<li class="chapter" data-level="2.2" data-path="exercise-3-2.html"><a href="exercise-3-2.html#find-the-method-of-moments-estimator"><i class="fa fa-check"></i><b>2.2</b> Find the method-of-moments estimator</a></li>
+<li class="chapter" data-level="2.3" data-path="exercise-3-2.html"><a href="exercise-3-2.html#find-the-mle"><i class="fa fa-check"></i><b>2.3</b> Find the MLE</a></li>
+<li class="chapter" data-level="2.4" data-path="exercise-3-2.html"><a href="exercise-3-2.html#theta_0-2.7-or-theta_0--2.7"><i class="fa fa-check"></i><b>2.4</b> <span class="math inline">\(\theta_0 = 2.7\)</span> or <span class="math inline">\(\theta_0 = -2.7\)</span></a></li>
+<li class="chapter" data-level="2.5" data-path="exercise-3-2.html"><a href="exercise-3-2.html#repeat-the-above-using-200-equally-spaced-starting-values"><i class="fa fa-check"></i><b>2.5</b> Repeat the above using 200 equally spaced starting values</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exercise-3-3.html"><a href="exercise-3-3.html"><i class="fa fa-check"></i><b>3</b> Exercise 3.3</a><ul>
+<li class="chapter" data-level="3.1" data-path="exercise-3-3.html"><a href="exercise-3-3.html#fit-the-population-growth-model-to-the-beetles-data-using-the-gauss-newton-approach"><i class="fa fa-check"></i><b>3.1</b> Fit the population growth model to the beetles data using the Gauss-Newton approach</a></li>
+<li class="chapter" data-level="3.2" data-path="exercise-3-3.html"><a href="exercise-3-3.html#log-normal-assumption"><i class="fa fa-check"></i><b>3.2</b> Log normal assumption</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exercise-4-8-1.html"><a href="exercise-4-8-1.html"><i class="fa fa-check"></i><b>4</b> Exercise 4.8.1</a><ul>
+<li class="chapter" data-level="4.1" data-path="exercise-4-8-1.html"><a href="exercise-4-8-1.html#em-step-derivations"><i class="fa fa-check"></i><b>4.1</b> E/M-Step Derivations</a></li>
+<li class="chapter" data-level="4.2" data-path="exercise-4-8-1.html"><a href="exercise-4-8-1.html#a-function-to-implement-em-algorithm"><i class="fa fa-check"></i><b>4.2</b> A Function to Implement EM Algorithm</a></li>
+<li class="chapter" data-level="4.3" data-path="exercise-4-8-1.html"><a href="exercise-4-8-1.html#data-generation-and-parameters-estimation"><i class="fa fa-check"></i><b>4.3</b> Data Generation and Parameters Estimation</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 5361 Statistical Computing Solution</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exercise-4.8.1" class="section level1">
+<h1><span class="header-section-number">Problem 4</span> Exercise 4.8.1</h1>
+<div id="em-step-derivations" class="section level2">
+<h2><span class="header-section-number">4.1</span> E/M-Step Derivations</h2>
+<span class="math display">\[\begin{align}
+Q(\Psi|\Psi^{(k)}) &amp; =\sum_{Z}\left[p(Z|\mathbf{y}, X, \Psi^{(k)})\log p(\mathbf{y}, Z|X, \Psi)\right]\\
+                   &amp; =\sum_{Z}\left[p(Z|\mathbf{y}, X, \Psi^{(k)})\log\prod^{n}_{i=1}p(y_{i}, \mathbf{z}_{i}|\mathbf{x}_{i}, \Psi)\right]\\
+                   &amp; =\sum^{n}_{i=1}\sum_{Z}\left[p(Z|\mathbf{y}, X, \Psi^{(k)})\log p(y_{i}, \mathbf{z}_{i}|\mathbf{x}_{i}, \Psi)\right]\\
+                   &amp; =\sum^{n}_{i=1}\sum_{\mathbf{z}_{i}}\left[p(\mathbf{z}_{i}|\mathbf{y}, X, \Psi^{(k)})\log p(y_{i}, \mathbf{z}_{i}|\mathbf{x}_{i}, \Psi)\right]\\
+                   &amp; =\sum^{n}_{i=1}\sum_{\mathbf{z}_{i}}\left[p(\mathbf{z}_{i}|y_{i}, \mathbf{x}_{i}, \Psi^{(k)})\log p(y_{i}, \mathbf{z}_{i}|\mathbf{x}_{i}, \Psi)\right]\\
+                   &amp; =\sum^{n}_{i=1}\sum^{m}_{j=1}\left[p(\mathbf{z}_{i}=(0,\cdots,1,\cdots,0)&#39;|y_{i}, \mathbf{x}_{i}, \Psi^{(k)})\log p(y_{i}, \mathbf{z}_{i}=(0,\cdots,1,\cdots,0)&#39;|\mathbf{x}_{i}, \Psi)\right]\\
+                   &amp; =\sum^{n}_{i=1}\sum^{m}_{j=1}\left[p(z_{ij}=1|y_{i}, \mathbf{x}_{i}, \Psi^{(k)})\log p(y_{i}, \mathbf{z}_{i}=(0,\cdots,1,\cdots,0)&#39;|\mathbf{x}_{i}, \Psi)\right]\\
+                   &amp; =\sum^{n}_{i=1}\sum^{m}_{j=1}\left[E(z_{ij}|y_{i}, \mathbf{x}_{i}, \Psi^{(k)})\{\log\pi_{j}+\log\varphi(y_{i}-\mathbf{x}^{T}_{i}\boldsymbol{\beta}_{j}, 0, \sigma^{2})\}\right]\\
+                   &amp; =\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\{\log\pi_{j}+\log\varphi(y_{i}-\mathbf{x}^{T}_{i}\boldsymbol{\beta}_{j}, 0, \sigma^{2})\}
+\end{align}\]</span>
+where <span class="math display">\[\mathbf{y}=(y_{1},\cdots,y_{n})&#39;\]</span> <span class="math display">\[Z=
+\begin{pmatrix}
+\mathbf{z}_{1}&#39;\\
+\vdots\\
+\mathbf{z}_{n}&#39;
+\end{pmatrix}=
+\begin{pmatrix}
+z_{11} &amp; z_{12} &amp; \cdots &amp; z_{1m}\\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots\\
+z_{n1} &amp; z_{n2} &amp; \cdots &amp; z_{nm}\\
+\end{pmatrix}
+\quad
+X=
+\begin{pmatrix}
+\mathbf{x}_{1}&#39;\\
+\vdots\\
+\mathbf{x}_{n}&#39;
+\end{pmatrix}=
+\begin{pmatrix}
+x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1p}\\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots\\
+x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{np}\\
+\end{pmatrix}\]</span> <span class="math display">\[p^{(k)}_{ij}=E(z_{ij}|y_{i}, \mathbf{x}_{i}, \Psi^{(k)})=\frac{\pi^{(k)}_{j}\varphi(y_{i}-\mathbf{x}^{T}_{i}\boldsymbol{\beta}^{(k)}_{j}, 0, \sigma^{2^{(k)}})}{\sum^{m}_{j=1}\pi^{(k)}_{j}\varphi(y_{i}-\mathbf{x}^{T}_{i}\boldsymbol{\beta}^{(k)}_{j}, 0, \sigma^{2^{(k)}})}\]</span> The elaboration of the above steps are
+
+For M-step, since we have
+<span class="math display">\[\begin{align*}
+Q(\Psi|\Psi^{(k)}) &amp; =\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\{\log\pi_{j}+\log\varphi(y_{i}-\mathbf{x}^{T}_{i}\boldsymbol{\beta}_{j}, 0, \sigma^{2})\}\\
+                   &amp; =\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\log\pi_{j}-\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\log\sqrt{2\pi}\sigma-\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\frac{(y_{i}-\mathbf{x}_{i}^{T}\boldsymbol{\beta}_{j})^{2}}{2\sigma^{2}}\\
+                   &amp; =\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\log\frac{\pi_{j}}{\sqrt{2\pi}}-\frac{1}{2}\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\log\sigma^{2}-\frac{1}{2}\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\frac{(y_{i}-\mathbf{x}_{i}^{T}\boldsymbol{\beta}_{j})^{2}}{\sigma^{2}}\\
+                   &amp; =I_{1}-\frac{1}{2}I_{2}-\frac{1}{2}I_{3}
+\end{align*}\]</span>
+<p>From the above, we can see only <span class="math inline">\(I_{3}\)</span> contains <span class="math inline">\(\boldsymbol{\beta}_{j}\)</span> and <span class="math display">\[I_{3}=\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\frac{(y_{i}-\mathbf{x}_{i}^{T}\boldsymbol{\beta}_{j})^{2}}{\sigma^{2}}=\sum^{m}_{j=1}\sum^{n}_{i=1}p^{(k)}_{ij}\frac{(y_{i}-\mathbf{x}_{i}^{T}\boldsymbol{\beta}_{j})^{2}}{\sigma^{2}}\]</span> To minimize <span class="math inline">\(I_{3}\)</span>, we only need to fix <span class="math inline">\(j\)</span> and optimize with regard to <span class="math inline">\(\boldsymbol{\beta}_{j}\)</span>. We can directly use the formula from generazied least square method and obtain <span class="math display">\[\boldsymbol{\beta}_{j}^{(k+1)}=(X&#39;V^{-1}X)^{-1}X&#39;V^{-1}\mathbf{y}=\left(\sum^{n}_{i=1}\mathbf{x}_{i}\mathbf{x}^{T}_{i}p^{(k)}_{ij}\right)^{-1}\left(\sum^{n}_{i=1}\mathbf{x}_{i}p^{(k)}_{ij}y_{i}\right)\quad j=1,\cdots, m\]</span> where <span class="math display">\[V^{-1}=diag(p_{1j}^{(k)},\cdots, p_{nj}^{(k)})\]</span> Only <span class="math inline">\(I_{2}\)</span> and <span class="math inline">\(I_{3}\)</span> contains <span class="math inline">\(\sigma^{2}\)</span>, since <span class="math display">\[I_{2}+I_{3}=\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\log\sigma^{2}+\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\frac{(y_{i}-\mathbf{x}_{i}^{T}\boldsymbol{\beta}_{j})^{2}}{\sigma^{2}}\]</span> We minimize it with regard to <span class="math inline">\(\sigma^{2}\)</span> given <span class="math inline">\(\boldsymbol{\beta}_{j}=\boldsymbol{\beta}^{(k+1)}_{j}\)</span> and obtain <span class="math display">\[\sigma^{2^{(k+1)}}=\frac{\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}(y_{i}-\mathbf{x}_{i}^{T}\boldsymbol{\beta}^{(k+1)}_{j})^{2}}{\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}}=\frac{\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}(y_{i}-\mathbf{x}_{i}^{T}\boldsymbol{\beta}^{(k+1)}_{j})^{2}}{n}\]</span> Only <span class="math inline">\(I_{1}\)</span> contains <span class="math inline">\(\pi_{j}\)</span> and <span class="math display">\[I_{1}=\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\log\frac{\pi_{j}}{\sqrt{2\pi}}=-\frac{1}{2}\log(2\pi)\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}+\sum^{m}_{j=1}\left(\sum^{n}_{i=1}p^{(k)}_{ij}\right)\log\pi_{j}\]</span> In order to maximize <span class="math inline">\(I_{1}\)</span> under constraint <span class="math inline">\(\pi_{1}+\cdots\pi_{m}=1\)</span>. We use Lagrange multiplier method <span class="math display">\[L(\pi_{1},\cdots,\pi_{m})=\sum^{m}_{j=1}\left(\sum^{n}_{i=1}p^{(k)}_{ij}\right)\log\pi_{j}-\lambda\left(\sum^{m}_{j=1}\pi_{j}-1\right)\]</span> with <span class="math inline">\(\lambda\)</span> a Lagrange multiplier. We can obtain <span class="math display">\[\pi^{(k+1)}_{j}=\frac{\sum^{n}_{i=1}p^{(k)}_{ij}}{\sum^{m}_{j=1}\sum^{n}_{i=1}p^{(k)}_{ij}}=\frac{\sum^{n}_{i=1}p^{(k)}_{ij}}{n}\quad j=1,\cdots,m\]</span></p>
+</div>
+<div id="a-function-to-implement-em-algorithm" class="section level2">
+<h2><span class="header-section-number">4.2</span> A Function to Implement EM Algorithm</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regmix_em &lt;-<span class="st"> </span><span class="cf">function</span>(y, xmat, pi.init, beta.init, sigma.init, 
+                      <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">maxiter =</span> <span class="dv">100</span>, <span class="dt">tol =</span> .Machine<span class="op">$</span>double.eps<span class="op">^</span><span class="fl">0.2</span>)){
+  
+  xmat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(xmat)
+  
+  n &lt;-<span class="st"> </span><span class="kw">nrow</span>(xmat)
+  p &lt;-<span class="st"> </span><span class="kw">ncol</span>(xmat)
+  m &lt;-<span class="st"> </span><span class="kw">length</span>(pi.init)
+  
+  pi &lt;-<span class="st"> </span>pi.init
+  beta &lt;-<span class="st"> </span>beta.init
+  sigma &lt;-<span class="st"> </span>sigma.init
+  
+  maxiter &lt;-<span class="st"> </span>control<span class="op">$</span>maxiter
+  tol &lt;-<span class="st"> </span>control<span class="op">$</span>tol
+  conv &lt;-<span class="st"> </span><span class="dv">1</span>
+  
+  P &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow =</span> n, <span class="dt">ncol =</span> m)
+  beta.new &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow =</span> p, <span class="dt">ncol =</span> m)
+  
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>maxiter) {
+    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {
+      P[j,] &lt;-<span class="st"> </span>pi <span class="op">*</span><span class="st"> </span><span class="kw">dnorm</span>(y[j] <span class="op">-</span><span class="st"> </span>xmat[j,] <span class="op">%*%</span><span class="st"> </span>beta, <span class="dv">0</span>, sigma)<span class="op">/</span>
+<span class="st">        </span><span class="kw">sum</span>(pi <span class="op">*</span><span class="st"> </span><span class="kw">dnorm</span>(y[j] <span class="op">-</span><span class="st"> </span>xmat[j,] <span class="op">%*%</span><span class="st"> </span>beta, <span class="dv">0</span>, sigma))
+    }
+    
+    pi.new &lt;-<span class="st"> </span><span class="kw">apply</span>(P, <span class="dt">MARGIN =</span> <span class="dv">2</span>, mean)
+    
+    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>m) {
+      beta.new[,j] &lt;-<span class="st"> </span><span class="kw">solve</span>(<span class="kw">t</span>(xmat) <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(P[,j]) <span class="op">%*%</span><span class="st"> </span>xmat) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(xmat) <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(P[,j]) <span class="op">%*%</span><span class="st"> </span>y
+    }
+    
+    sigma.new &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">sum</span>(P <span class="op">*</span><span class="st"> </span>(y <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(<span class="kw">rep</span>(<span class="dv">1</span>, m)) <span class="op">-</span><span class="st"> </span>xmat <span class="op">%*%</span><span class="st"> </span>beta.new)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>n)
+    
+    conv &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">abs</span>(pi.new <span class="op">-</span><span class="st"> </span>pi)) <span class="op">+</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">abs</span>(beta.new <span class="op">-</span><span class="st"> </span>beta)) <span class="op">+</span><span class="st"> </span><span class="kw">abs</span>(sigma.new <span class="op">-</span><span class="st"> </span>sigma)
+    <span class="cf">if</span>(conv <span class="op">&lt;</span><span class="st"> </span>tol) <span class="cf">break</span>
+    
+    pi &lt;-<span class="st"> </span>pi.new
+    beta &lt;-<span class="st"> </span>beta.new
+    sigma &lt;-<span class="st"> </span>sigma.new
+    
+  }
+  
+  <span class="cf">if</span>(i <span class="op">==</span><span class="st"> </span>maxiter)
+  <span class="kw">message</span>(<span class="st">&quot;Reached the maximum iteration!&quot;</span>)
+  
+  <span class="kw">list</span>(<span class="dt">pi =</span> pi.new, <span class="dt">beta =</span> beta.new, <span class="dt">sigma =</span> sigma.new, <span class="dt">conv =</span> conv, <span class="dt">iter =</span> i)
+  
+}</code></pre></div>
+</div>
+<div id="data-generation-and-parameters-estimation" class="section level2">
+<h2><span class="header-section-number">4.3</span> Data Generation and Parameters Estimation</h2>
+<p>After I carried out the following code, I found parameters won’t be updated after the second iteration. Tracing back to E-Step Derivation, we can see if <span class="math inline">\(\boldsymbol{\beta}_{1}=\cdots=\boldsymbol{\beta}_{m}\)</span>, then <span class="math inline">\(\mathbf{p}^{(k)}_{\cdot j}\)</span> and <span class="math inline">\(\pi^{(k)}_{j}\)</span> will remain the same at all times.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regmix_sim &lt;-<span class="st"> </span><span class="cf">function</span>(n, pi, beta, sigma) {
+    K &lt;-<span class="st"> </span><span class="kw">ncol</span>(beta)
+    p &lt;-<span class="st"> </span><span class="kw">NROW</span>(beta)
+    xmat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(n <span class="op">*</span><span class="st"> </span>p), n, p) <span class="co"># normal covaraites</span>
+    error &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(n <span class="op">*</span><span class="st"> </span>K, <span class="dt">sd =</span> sigma), n, K)
+    ymat &lt;-<span class="st"> </span>xmat <span class="op">%*%</span><span class="st"> </span>beta <span class="op">+</span><span class="st"> </span>error <span class="co"># n by K matrix</span>
+    ind &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw">rmultinom</span>(n, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> pi))
+    y &lt;-<span class="st"> </span><span class="kw">rowSums</span>(ymat <span class="op">*</span><span class="st"> </span>ind)
+    <span class="kw">data.frame</span>(y, xmat)
+}
+
+n &lt;-<span class="st"> </span><span class="dv">400</span>
+pi &lt;-<span class="st"> </span><span class="kw">c</span>(.<span class="dv">3</span>, .<span class="dv">4</span>, .<span class="dv">3</span>)
+beta &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>( <span class="dv">1</span>,  <span class="dv">1</span>,  <span class="dv">1</span>, 
+                <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>), <span class="dv">2</span>, <span class="dv">3</span>)
+sigma &lt;-<span class="st"> </span><span class="dv">1</span>
+<span class="kw">set.seed</span>(<span class="dv">1205</span>)
+dat &lt;-<span class="st"> </span><span class="kw">regmix_sim</span>(n, pi, beta, sigma)
+
+fit &lt;-<span class="st"> </span><span class="kw">regmix_em</span>(<span class="dt">y =</span> dat[,<span class="dv">1</span>], <span class="dt">xmat =</span> dat[,<span class="op">-</span><span class="dv">1</span>],
+          <span class="dt">pi.init =</span> pi <span class="op">/</span><span class="st"> </span>pi <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(pi),
+          <span class="dt">beta.init =</span> beta <span class="op">*</span><span class="st"> </span><span class="dv">0</span>,
+          <span class="dt">sigma.init =</span> sigma <span class="op">/</span><span class="st"> </span>sigma,
+          <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">maxiter =</span> <span class="dv">500</span>, <span class="dt">tol =</span> <span class="fl">1e-5</span>))
+fit</code></pre></div>
+<pre><code>## $pi
+## [1] 0.3333333 0.3333333 0.3333333
+## 
+## $beta
+##            [,1]       [,2]       [,3]
+## [1,]  0.3335660  0.3335660  0.3335660
+## [2,] -0.4754645 -0.4754645 -0.4754645
+## 
+## $sigma
+## [1] 1.732492
+## 
+## $conv
+## [1] 0
+## 
+## $iter
+## [1] 2</code></pre>
+<p>Thus we change the initial values of <span class="math inline">\(\boldsymbol{\beta}_{1},\cdots,\boldsymbol{\beta}_{m}\)</span>. And we can see this time after <span class="math inline">\(83\)</span> iterations, the algorithm converged and I got the following consequences.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit1 &lt;-<span class="st"> </span><span class="kw">regmix_em</span>(<span class="dt">y =</span> dat[,<span class="dv">1</span>], <span class="dt">xmat =</span> dat[,<span class="op">-</span><span class="dv">1</span>],
+          <span class="dt">pi.init =</span> pi <span class="op">/</span><span class="st"> </span>pi <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(pi),
+          <span class="dt">beta.init =</span> <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">3</span>),
+          <span class="dt">sigma.init =</span> sigma <span class="op">/</span><span class="st"> </span>sigma,
+          <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">maxiter =</span> <span class="dv">500</span>, <span class="dt">tol =</span> <span class="fl">1e-5</span>))
+fit1</code></pre></div>
+<pre><code>## $pi
+## [1] 0.3454017 0.3858262 0.2687721
+## 
+## $beta
+##            [,1]      [,2]       [,3]
+## [1,] -0.9136801 0.8796636  0.9912061
+## [2,] -1.1990374 0.9341887 -1.2424685
+## 
+## $sigma
+## [1] 1.023598
+## 
+## $conv
+## [1] 9.786183e-06
+## 
+## $iter
+## [1] 83</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="exercise-3-3.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["Statistical-Computing-Solution.pdf", "Statistical-Computing-Solution.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

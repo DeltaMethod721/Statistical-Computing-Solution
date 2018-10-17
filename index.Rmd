@@ -20,9 +20,7 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
 ```
-```{r echo = FALSE}
-source("utils_template.R")
-```
+
 
 
 

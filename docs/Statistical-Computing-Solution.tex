@@ -122,7 +122,7 @@
   \preauthor{}\postauthor{}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-10-03}
+  \date{2018-10-16}
 
 \usepackage{booktabs}
 
@@ -395,7 +395,7 @@ The log-likelihood function of this distribution is
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Statistical-Computing-Solution_files/figure-latex/unnamed-chunk-3-1.pdf}
+\includegraphics{Statistical-Computing-Solution_files/figure-latex/unnamed-chunk-2-1.pdf}
 
 \section{Find the method-of-moments
 estimator}\label{find-the-method-of-moments-estimator}
@@ -920,6 +920,235 @@ But there's problem that results will change dramatically with initial
 values. I just tried several different initial values, get the estimates
 and compare their corresponding loglikelihood. I just choose the one
 with maximum loglikelihood.
+
+\chapter{Exercise 4.8.1}\label{exercise-4.8.1}
+
+\section{E/M-Step Derivations}\label{em-step-derivations}
+
+\begin{align}
+Q(\Psi|\Psi^{(k)}) & =\sum_{Z}\left[p(Z|\mathbf{y}, X, \Psi^{(k)})\log p(\mathbf{y}, Z|X, \Psi)\right]\\
+                   & =\sum_{Z}\left[p(Z|\mathbf{y}, X, \Psi^{(k)})\log\prod^{n}_{i=1}p(y_{i}, \mathbf{z}_{i}|\mathbf{x}_{i}, \Psi)\right]\\
+                   & =\sum^{n}_{i=1}\sum_{Z}\left[p(Z|\mathbf{y}, X, \Psi^{(k)})\log p(y_{i}, \mathbf{z}_{i}|\mathbf{x}_{i}, \Psi)\right]\\
+                   & =\sum^{n}_{i=1}\sum_{\mathbf{z}_{i}}\left[p(\mathbf{z}_{i}|\mathbf{y}, X, \Psi^{(k)})\log p(y_{i}, \mathbf{z}_{i}|\mathbf{x}_{i}, \Psi)\right]\\
+                   & =\sum^{n}_{i=1}\sum_{\mathbf{z}_{i}}\left[p(\mathbf{z}_{i}|y_{i}, \mathbf{x}_{i}, \Psi^{(k)})\log p(y_{i}, \mathbf{z}_{i}|\mathbf{x}_{i}, \Psi)\right]\\
+                   & =\sum^{n}_{i=1}\sum^{m}_{j=1}\left[p(\mathbf{z}_{i}=(0,\cdots,1,\cdots,0)'|y_{i}, \mathbf{x}_{i}, \Psi^{(k)})\log p(y_{i}, \mathbf{z}_{i}=(0,\cdots,1,\cdots,0)'|\mathbf{x}_{i}, \Psi)\right]\\
+                   & =\sum^{n}_{i=1}\sum^{m}_{j=1}\left[p(z_{ij}=1|y_{i}, \mathbf{x}_{i}, \Psi^{(k)})\log p(y_{i}, \mathbf{z}_{i}=(0,\cdots,1,\cdots,0)'|\mathbf{x}_{i}, \Psi)\right]\\
+                   & =\sum^{n}_{i=1}\sum^{m}_{j=1}\left[E(z_{ij}|y_{i}, \mathbf{x}_{i}, \Psi^{(k)})\{\log\pi_{j}+\log\varphi(y_{i}-\mathbf{x}^{T}_{i}\boldsymbol{\beta}_{j}, 0, \sigma^{2})\}\right]\\
+                   & =\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\{\log\pi_{j}+\log\varphi(y_{i}-\mathbf{x}^{T}_{i}\boldsymbol{\beta}_{j}, 0, \sigma^{2})\}
+\end{align}
+
+where \[\mathbf{y}=(y_{1},\cdots,y_{n})'\] \[Z=
+\begin{pmatrix}
+\mathbf{z}_{1}'\\
+\vdots\\
+\mathbf{z}_{n}'
+\end{pmatrix}=
+\begin{pmatrix}
+z_{11} & z_{12} & \cdots & z_{1m}\\
+\vdots & \vdots & \vdots & \vdots\\
+z_{n1} & z_{n2} & \cdots & z_{nm}\\
+\end{pmatrix}
+\quad
+X=
+\begin{pmatrix}
+\mathbf{x}_{1}'\\
+\vdots\\
+\mathbf{x}_{n}'
+\end{pmatrix}=
+\begin{pmatrix}
+x_{11} & x_{12} & \cdots & x_{1p}\\
+\vdots & \vdots & \vdots & \vdots\\
+x_{n1} & x_{n2} & \cdots & x_{np}\\
+\end{pmatrix}\]
+\[p^{(k)}_{ij}=E(z_{ij}|y_{i}, \mathbf{x}_{i}, \Psi^{(k)})=\frac{\pi^{(k)}_{j}\varphi(y_{i}-\mathbf{x}^{T}_{i}\boldsymbol{\beta}^{(k)}_{j}, 0, \sigma^{2^{(k)}})}{\sum^{m}_{j=1}\pi^{(k)}_{j}\varphi(y_{i}-\mathbf{x}^{T}_{i}\boldsymbol{\beta}^{(k)}_{j}, 0, \sigma^{2^{(k)}})}\]
+The elaboration of the above steps are
+
+\begin{itemize}
+\item Step1$\rightarrow$Step2: Use independence among $(y_{i}, \mathbf{z}_{i})$
+\item Step3$\rightarrow$Step4: Marginal density of $\mathbf{z}_{i}$
+\item Step4$\rightarrow$Step5: Use the fact $\mathbf{z}_{i}\perp(y_{1},\cdots,y_{i-1},y_{i+1},\cdots,y_{n})|y_{i}$, we can get rid of $(y_{1},\cdots,y_{i-1},y_{i+1},\cdots,y_{n})$
+\item Step6$\rightarrow$Step7: Easy to see conditional joint density is equal to condition marginal density
+\end{itemize}
+
+For M-step, since we have
+
+\begin{align*}
+Q(\Psi|\Psi^{(k)}) & =\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\{\log\pi_{j}+\log\varphi(y_{i}-\mathbf{x}^{T}_{i}\boldsymbol{\beta}_{j}, 0, \sigma^{2})\}\\
+                   & =\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\log\pi_{j}-\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\log\sqrt{2\pi}\sigma-\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\frac{(y_{i}-\mathbf{x}_{i}^{T}\boldsymbol{\beta}_{j})^{2}}{2\sigma^{2}}\\
+                   & =\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\log\frac{\pi_{j}}{\sqrt{2\pi}}-\frac{1}{2}\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\log\sigma^{2}-\frac{1}{2}\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\frac{(y_{i}-\mathbf{x}_{i}^{T}\boldsymbol{\beta}_{j})^{2}}{\sigma^{2}}\\
+                   & =I_{1}-\frac{1}{2}I_{2}-\frac{1}{2}I_{3}
+\end{align*}
+
+From the above, we can see only \(I_{3}\) contains
+\(\boldsymbol{\beta}_{j}\) and
+\[I_{3}=\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\frac{(y_{i}-\mathbf{x}_{i}^{T}\boldsymbol{\beta}_{j})^{2}}{\sigma^{2}}=\sum^{m}_{j=1}\sum^{n}_{i=1}p^{(k)}_{ij}\frac{(y_{i}-\mathbf{x}_{i}^{T}\boldsymbol{\beta}_{j})^{2}}{\sigma^{2}}\]
+To minimize \(I_{3}\), we only need to fix \(j\) and optimize with
+regard to \(\boldsymbol{\beta}_{j}\). We can directly use the formula
+from generazied least square method and obtain
+\[\boldsymbol{\beta}_{j}^{(k+1)}=(X'V^{-1}X)^{-1}X'V^{-1}\mathbf{y}=\left(\sum^{n}_{i=1}\mathbf{x}_{i}\mathbf{x}^{T}_{i}p^{(k)}_{ij}\right)^{-1}\left(\sum^{n}_{i=1}\mathbf{x}_{i}p^{(k)}_{ij}y_{i}\right)\quad j=1,\cdots, m\]
+where \[V^{-1}=diag(p_{1j}^{(k)},\cdots, p_{nj}^{(k)})\] Only \(I_{2}\)
+and \(I_{3}\) contains \(\sigma^{2}\), since
+\[I_{2}+I_{3}=\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\log\sigma^{2}+\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\frac{(y_{i}-\mathbf{x}_{i}^{T}\boldsymbol{\beta}_{j})^{2}}{\sigma^{2}}\]
+We minimize it with regard to \(\sigma^{2}\) given
+\(\boldsymbol{\beta}_{j}=\boldsymbol{\beta}^{(k+1)}_{j}\) and obtain
+\[\sigma^{2^{(k+1)}}=\frac{\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}(y_{i}-\mathbf{x}_{i}^{T}\boldsymbol{\beta}^{(k+1)}_{j})^{2}}{\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}}=\frac{\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}(y_{i}-\mathbf{x}_{i}^{T}\boldsymbol{\beta}^{(k+1)}_{j})^{2}}{n}\]
+Only \(I_{1}\) contains \(\pi_{j}\) and
+\[I_{1}=\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}\log\frac{\pi_{j}}{\sqrt{2\pi}}=-\frac{1}{2}\log(2\pi)\sum^{n}_{i=1}\sum^{m}_{j=1}p^{(k)}_{ij}+\sum^{m}_{j=1}\left(\sum^{n}_{i=1}p^{(k)}_{ij}\right)\log\pi_{j}\]
+In order to maximize \(I_{1}\) under constraint
+\(\pi_{1}+\cdots\pi_{m}=1\). We use Lagrange multiplier method
+\[L(\pi_{1},\cdots,\pi_{m})=\sum^{m}_{j=1}\left(\sum^{n}_{i=1}p^{(k)}_{ij}\right)\log\pi_{j}-\lambda\left(\sum^{m}_{j=1}\pi_{j}-1\right)\]
+with \(\lambda\) a Lagrange multiplier. We can obtain
+\[\pi^{(k+1)}_{j}=\frac{\sum^{n}_{i=1}p^{(k)}_{ij}}{\sum^{m}_{j=1}\sum^{n}_{i=1}p^{(k)}_{ij}}=\frac{\sum^{n}_{i=1}p^{(k)}_{ij}}{n}\quad j=1,\cdots,m\]
+
+\section{A Function to Implement EM
+Algorithm}\label{a-function-to-implement-em-algorithm}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{regmix_em <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(y, xmat, pi.init, beta.init, sigma.init, }
+                      \DataTypeTok{control =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{maxiter =} \DecValTok{100}\NormalTok{, }\DataTypeTok{tol =}\NormalTok{ .Machine}\OperatorTok{$}\NormalTok{double.eps}\OperatorTok{^}\FloatTok{0.2}\NormalTok{))\{}
+  
+\NormalTok{  xmat <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(xmat)}
+  
+\NormalTok{  n <-}\StringTok{ }\KeywordTok{nrow}\NormalTok{(xmat)}
+\NormalTok{  p <-}\StringTok{ }\KeywordTok{ncol}\NormalTok{(xmat)}
+\NormalTok{  m <-}\StringTok{ }\KeywordTok{length}\NormalTok{(pi.init)}
+  
+\NormalTok{  pi <-}\StringTok{ }\NormalTok{pi.init}
+\NormalTok{  beta <-}\StringTok{ }\NormalTok{beta.init}
+\NormalTok{  sigma <-}\StringTok{ }\NormalTok{sigma.init}
+  
+\NormalTok{  maxiter <-}\StringTok{ }\NormalTok{control}\OperatorTok{$}\NormalTok{maxiter}
+\NormalTok{  tol <-}\StringTok{ }\NormalTok{control}\OperatorTok{$}\NormalTok{tol}
+\NormalTok{  conv <-}\StringTok{ }\DecValTok{1}
+  
+\NormalTok{  P <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DataTypeTok{nrow =}\NormalTok{ n, }\DataTypeTok{ncol =}\NormalTok{ m)}
+\NormalTok{  beta.new <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DataTypeTok{nrow =}\NormalTok{ p, }\DataTypeTok{ncol =}\NormalTok{ m)}
+  
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{maxiter) \{}
+    \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{n) \{}
+\NormalTok{      P[j,] <-}\StringTok{ }\NormalTok{pi }\OperatorTok{*}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(y[j] }\OperatorTok{-}\StringTok{ }\NormalTok{xmat[j,] }\OperatorTok{%*%}\StringTok{ }\NormalTok{beta, }\DecValTok{0}\NormalTok{, sigma)}\OperatorTok{/}
+\StringTok{        }\KeywordTok{sum}\NormalTok{(pi }\OperatorTok{*}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(y[j] }\OperatorTok{-}\StringTok{ }\NormalTok{xmat[j,] }\OperatorTok{%*%}\StringTok{ }\NormalTok{beta, }\DecValTok{0}\NormalTok{, sigma))}
+\NormalTok{    \}}
+    
+\NormalTok{    pi.new <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(P, }\DataTypeTok{MARGIN =} \DecValTok{2}\NormalTok{, mean)}
+    
+    \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{m) \{}
+\NormalTok{      beta.new[,j] <-}\StringTok{ }\KeywordTok{solve}\NormalTok{(}\KeywordTok{t}\NormalTok{(xmat) }\OperatorTok{%*%}\StringTok{ }\KeywordTok{diag}\NormalTok{(P[,j]) }\OperatorTok{%*%}\StringTok{ }\NormalTok{xmat) }\OperatorTok{%*%}\StringTok{ }\KeywordTok{t}\NormalTok{(xmat) }\OperatorTok{%*%}\StringTok{ }\KeywordTok{diag}\NormalTok{(P[,j]) }\OperatorTok{%*%}\StringTok{ }\NormalTok{y}
+\NormalTok{    \}}
+    
+\NormalTok{    sigma.new <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{sum}\NormalTok{(P }\OperatorTok{*}\StringTok{ }\NormalTok{(y }\OperatorTok{%*%}\StringTok{ }\KeywordTok{t}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, m)) }\OperatorTok{-}\StringTok{ }\NormalTok{xmat }\OperatorTok{%*%}\StringTok{ }\NormalTok{beta.new)}\OperatorTok{^}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{n)}
+    
+\NormalTok{    conv <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{abs}\NormalTok{(pi.new }\OperatorTok{-}\StringTok{ }\NormalTok{pi)) }\OperatorTok{+}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{abs}\NormalTok{(beta.new }\OperatorTok{-}\StringTok{ }\NormalTok{beta)) }\OperatorTok{+}\StringTok{ }\KeywordTok{abs}\NormalTok{(sigma.new }\OperatorTok{-}\StringTok{ }\NormalTok{sigma)}
+    \ControlFlowTok{if}\NormalTok{(conv }\OperatorTok{<}\StringTok{ }\NormalTok{tol) }\ControlFlowTok{break}
+    
+\NormalTok{    pi <-}\StringTok{ }\NormalTok{pi.new}
+\NormalTok{    beta <-}\StringTok{ }\NormalTok{beta.new}
+\NormalTok{    sigma <-}\StringTok{ }\NormalTok{sigma.new}
+    
+\NormalTok{  \}}
+  
+  \ControlFlowTok{if}\NormalTok{(i }\OperatorTok{==}\StringTok{ }\NormalTok{maxiter)}
+  \KeywordTok{message}\NormalTok{(}\StringTok{"Reached the maximum iteration!"}\NormalTok{)}
+  
+  \KeywordTok{list}\NormalTok{(}\DataTypeTok{pi =}\NormalTok{ pi.new, }\DataTypeTok{beta =}\NormalTok{ beta.new, }\DataTypeTok{sigma =}\NormalTok{ sigma.new, }\DataTypeTok{conv =}\NormalTok{ conv, }\DataTypeTok{iter =}\NormalTok{ i)}
+  
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Data Generation and Parameters
+Estimation}\label{data-generation-and-parameters-estimation}
+
+After I carried out the following code, I found parameters won't be
+updated after the second iteration. Tracing back to E-Step Derivation,
+we can see if \(\boldsymbol{\beta}_{1}=\cdots=\boldsymbol{\beta}_{m}\),
+then \(\mathbf{p}^{(k)}_{\cdot j}\) and \(\pi^{(k)}_{j}\) will remain
+the same at all times.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{regmix_sim <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(n, pi, beta, sigma) \{}
+\NormalTok{    K <-}\StringTok{ }\KeywordTok{ncol}\NormalTok{(beta)}
+\NormalTok{    p <-}\StringTok{ }\KeywordTok{NROW}\NormalTok{(beta)}
+\NormalTok{    xmat <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(n }\OperatorTok{*}\StringTok{ }\NormalTok{p), n, p) }\CommentTok{# normal covaraites}
+\NormalTok{    error <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(n }\OperatorTok{*}\StringTok{ }\NormalTok{K, }\DataTypeTok{sd =}\NormalTok{ sigma), n, K)}
+\NormalTok{    ymat <-}\StringTok{ }\NormalTok{xmat }\OperatorTok{%*%}\StringTok{ }\NormalTok{beta }\OperatorTok{+}\StringTok{ }\NormalTok{error }\CommentTok{# n by K matrix}
+\NormalTok{    ind <-}\StringTok{ }\KeywordTok{t}\NormalTok{(}\KeywordTok{rmultinom}\NormalTok{(n, }\DataTypeTok{size =} \DecValTok{1}\NormalTok{, }\DataTypeTok{prob =}\NormalTok{ pi))}
+\NormalTok{    y <-}\StringTok{ }\KeywordTok{rowSums}\NormalTok{(ymat }\OperatorTok{*}\StringTok{ }\NormalTok{ind)}
+    \KeywordTok{data.frame}\NormalTok{(y, xmat)}
+\NormalTok{\}}
+
+\NormalTok{n <-}\StringTok{ }\DecValTok{400}
+\NormalTok{pi <-}\StringTok{ }\KeywordTok{c}\NormalTok{(.}\DecValTok{3}\NormalTok{, .}\DecValTok{4}\NormalTok{, .}\DecValTok{3}\NormalTok{)}
+\NormalTok{beta <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{( }\DecValTok{1}\NormalTok{,  }\DecValTok{1}\NormalTok{,  }\DecValTok{1}\NormalTok{, }
+                \OperatorTok{-}\DecValTok{1}\NormalTok{, }\OperatorTok{-}\DecValTok{1}\NormalTok{, }\OperatorTok{-}\DecValTok{1}\NormalTok{), }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{sigma <-}\StringTok{ }\DecValTok{1}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1205}\NormalTok{)}
+\NormalTok{dat <-}\StringTok{ }\KeywordTok{regmix_sim}\NormalTok{(n, pi, beta, sigma)}
+
+\NormalTok{fit <-}\StringTok{ }\KeywordTok{regmix_em}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ dat[,}\DecValTok{1}\NormalTok{], }\DataTypeTok{xmat =}\NormalTok{ dat[,}\OperatorTok{-}\DecValTok{1}\NormalTok{],}
+          \DataTypeTok{pi.init =}\NormalTok{ pi }\OperatorTok{/}\StringTok{ }\NormalTok{pi }\OperatorTok{/}\StringTok{ }\KeywordTok{length}\NormalTok{(pi),}
+          \DataTypeTok{beta.init =}\NormalTok{ beta }\OperatorTok{*}\StringTok{ }\DecValTok{0}\NormalTok{,}
+          \DataTypeTok{sigma.init =}\NormalTok{ sigma }\OperatorTok{/}\StringTok{ }\NormalTok{sigma,}
+          \DataTypeTok{control =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{maxiter =} \DecValTok{500}\NormalTok{, }\DataTypeTok{tol =} \FloatTok{1e-5}\NormalTok{))}
+\NormalTok{fit}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $pi
+## [1] 0.3333333 0.3333333 0.3333333
+## 
+## $beta
+##            [,1]       [,2]       [,3]
+## [1,]  0.3335660  0.3335660  0.3335660
+## [2,] -0.4754645 -0.4754645 -0.4754645
+## 
+## $sigma
+## [1] 1.732492
+## 
+## $conv
+## [1] 0
+## 
+## $iter
+## [1] 2
+\end{verbatim}
+
+Thus we change the initial values of
+\(\boldsymbol{\beta}_{1},\cdots,\boldsymbol{\beta}_{m}\). And we can see
+this time after \(83\) iterations, the algorithm converged and I got the
+following consequences.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit1 <-}\StringTok{ }\KeywordTok{regmix_em}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ dat[,}\DecValTok{1}\NormalTok{], }\DataTypeTok{xmat =}\NormalTok{ dat[,}\OperatorTok{-}\DecValTok{1}\NormalTok{],}
+          \DataTypeTok{pi.init =}\NormalTok{ pi }\OperatorTok{/}\StringTok{ }\NormalTok{pi }\OperatorTok{/}\StringTok{ }\KeywordTok{length}\NormalTok{(pi),}
+          \DataTypeTok{beta.init =} \KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{),}
+          \DataTypeTok{sigma.init =}\NormalTok{ sigma }\OperatorTok{/}\StringTok{ }\NormalTok{sigma,}
+          \DataTypeTok{control =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{maxiter =} \DecValTok{500}\NormalTok{, }\DataTypeTok{tol =} \FloatTok{1e-5}\NormalTok{))}
+\NormalTok{fit1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $pi
+## [1] 0.3454017 0.3858262 0.2687721
+## 
+## $beta
+##            [,1]      [,2]       [,3]
+## [1,] -0.9136801 0.8796636  0.9912061
+## [2,] -1.1990374 0.9341887 -1.2424685
+## 
+## $sigma
+## [1] 1.023598
+## 
+## $conv
+## [1] 9.786183e-06
+## 
+## $iter
+## [1] 83
+\end{verbatim}
 
 \bibliography{book.bib,packages.bib}
 
